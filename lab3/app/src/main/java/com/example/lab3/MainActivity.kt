@@ -1,35 +1,32 @@
 package com.example.lab3
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     
-    private var list = ArrayList<Int>()
+    private var numbersList : ArrayList<Int> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         if(savedInstanceState != null) {
-            list = ArrayList(savedInstanceState.getIntArray("list")!!.toList())
-            if (list != null) {
-                for(i in list){
-                    addTextView(i)
-                }
+
+            numbersList = ArrayList(savedInstanceState.getIntArray("savedNumbersList")!!.toList())
+            for(number in numbersList){
+                addTextView(number)
             }
-            var savedYPosition = savedInstanceState.getInt("savedYPosition")
-            var scrollView = findViewById<ScrollView>(R.id.scroll_view)
-            scrollView.scrollY = savedYPosition;
+            
+            val savedYScrollPosition = savedInstanceState.getInt("savedYScrollPosition")
+            val scrollView = findViewById<ScrollView>(R.id.scroll_view)
+            scrollView.scrollY = savedYScrollPosition
         }
+
         Log.i("MyInfo", "Метод onCreate")
     }
 
@@ -58,9 +55,9 @@ class MainActivity : AppCompatActivity() {
         Log.i("MyInfo", "Метод onDestroy")
     }
 
-    fun buttonAddClick(view: View) {
-        var randomInt = Random.nextInt(0,100);
-        list.add(randomInt)
+    fun buttonAddClick() {
+        val randomInt : Int = Random.nextInt(0,100)
+        numbersList.add(randomInt)
         addTextView(randomInt)
     }
 
@@ -72,14 +69,11 @@ class MainActivity : AppCompatActivity() {
         container.addView(textView)
     }
 
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putIntArray("list", list.toIntArray())
-        val scrollY = findViewById<ScrollView>(R.id.scroll_view).scrollY;
-        outState.putInt("savedYPosition", scrollY)
+        outState.putIntArray("savedNumbersList", numbersList.toIntArray())
+        val currentScrollYPosition : Int = findViewById<ScrollView>(R.id.scroll_view).scrollY
+        outState.putInt("savedYScrollPosition", currentScrollYPosition)
     }
-
-
 
 }
