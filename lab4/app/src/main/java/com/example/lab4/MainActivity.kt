@@ -1,27 +1,30 @@
 package com.example.lab4
-
 import android.os.Bundle
-import android.util.Log
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.math.pow
-import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var correctAnswersCount: Int = 0;
-    private var incorrectAnswersCount: Int = 0;
-    private var totalAnswersCount: Int = 1;
+    private var correctAnswersCount: Int = 0
+    private var incorrectAnswersCount: Int = 0
+    private var totalAnswersCount: Int = 1
+    private var correctAnswerString = ""
+    private var incorrectAnswerString = ""
+
+
     private val randomEquationGenerator = RandomEquationGenerator()
     private val difficultyGenerator = DifficultyGenerator()
+    private val randomNumbersGenerator = RandomNumbersGenerator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        correctAnswerString = resources.getString(R.string.correctAnswer)
+        incorrectAnswerString = resources.getString(R.string.incorrectAnswer)
         setContentView(R.layout.activity_main)
         initBaseViews()
     }
@@ -32,18 +35,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun generateTask() {
-        var diff = difficultyGenerator.getDiff(correctAnswersCount, totalAnswersCount)
-        var range = 10.toDouble().pow(diff.toDouble()).toInt()
+        val diff = difficultyGenerator.getDiff(correctAnswersCount, totalAnswersCount)
 
-        Log.i("difficult", diff.toString())
-        var equation : Equation = randomEquationGenerator.generate(diff)
-        Log.i("equation", equation.stringValue)
+        val equation : Equation = randomEquationGenerator.generate(diff)
+        val equationAnswer = equation.answer
 
-        val answers : ArrayList<Int> = ArrayList(listOf(
-            equation.answer,
-            Random.nextInt(0, range),
-            Random.nextInt(0, range),
-        ))
+        val randomNumbers : ArrayList<Int> = randomNumbersGenerator.generateNumbersDependsOnTarget(equationAnswer)
+
+        val answers : ArrayList<Int> = ArrayList()
+        answers.add(equationAnswer)
+        answers.addAll(randomNumbers)
 
         renderTask(equation, answers.shuffled())
     }
@@ -51,17 +52,15 @@ class MainActivity : AppCompatActivity() {
     private fun renderTask(equation: Equation, answers: List<Int>) {
 
         val listView = findViewById<ListView>(R.id.listView)
-        val adapter = ArrayAdapter<Int>(this, R.layout.my_list_item, answers)
+        val adapter = ArrayAdapter(this, R.layout.my_list_item, answers)
+
         listView.adapter = adapter
-        listView.onItemClickListener = OnItemClickListener {  parent, view, position, id  ->
+
+        listView.onItemClickListener = OnItemClickListener {  _, _, position, _  ->
             totalAnswersCount++
-            var chosenAnswer = answers[position];
-            val correct : Boolean  = chosenAnswer == equation.answer
-            if(correct) correctAnswersCount++ else incorrectAnswersCount++
-            val toast: Toast = Toast.makeText(this,
-                if(correct) "Правильный ответ!" else "Неправильный ответ!",
-                Toast.LENGTH_SHORT)
-            toast.show()
+            val selectedAnswer = answers[position]
+            val isCorrectAnswer : Boolean  = selectedAnswer == equation.answer
+            if(isCorrectAnswer) correctAnswersCount++ else incorrectAnswersCount++
             generateTask()
         }
 
@@ -71,11 +70,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateTextViews() {
-        var totalAnswerText = resources.getString(R.string.totalAnswersCount)
-        findViewById<TextView>(R.id.totalAnswersCount).text = String.format(totalAnswerText, totalAnswersCount)
-        var correctAnswerText = resources.getString(R.string.correctString)
-        findViewById<TextView>(R.id.correctAnswers).text = String.format(correctAnswerText, correctAnswersCount)
-        var incorrectAnswerText = resources.getString(R.string.incorrectString)
-        findViewById<TextView>(R.id.incorrectAnswers).text = String.format(incorrectAnswerText, incorrectAnswersCount)
+        val totalAnswerCountText : String = resources.getString(R.string.totalAnswersCount)
+        findViewById<TextView>(R.id.totalAnswersCount).text = String.format(totalAnswerCountText,
+                                                                            totalAnswersCount)
+
+        val correctAnswersCountText : String = resources.getString(R.string.correctString)
+        findViewById<TextView>(R.id.correctAnswers).text = String.format(correctAnswersCountText,
+                                                                         correctAnswersCount)
+
+        val incorrectAnswersCountText : String = resources.getString(R.string.incorrectString)
+        findViewById<TextView>(R.id.incorrectAnswers).text = String.format(incorrectAnswersCountText,
+                                                                           incorrectAnswersCount)
     }
 }

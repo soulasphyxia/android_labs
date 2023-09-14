@@ -6,21 +6,21 @@ import kotlin.random.Random
 
 class RandomEquationGenerator {
     fun generate(diff: Int): Equation {
-        var base : Int = 10;
-        var range = base.toDouble().pow(diff.toDouble()).toInt()
+        val base = 10
+        val rangeEnd = base.toDouble().pow(diff).toInt()
         val operation = getRandomOperation()
-        val num1: Int = Random.nextInt(1, range);
-        val num2: Int = Random.nextInt(1, range)
-        var answer = calculateEquation(num1, num2, operation)
-        var stringValue = "$num1 $operation $num2 = ?";
+        val num1: Int = Random.nextInt(1, rangeEnd)
+        val num2: Int = Random.nextInt(1, rangeEnd)
+        val answer = calculateEquation(num1, num2, operation)
+        val stringValue = "$num1 $operation $num2 = ?"
 
-        return Equation(stringValue,answer);
+        return Equation(stringValue,answer)
     }
 
 
     private fun getRandomOperation() : String{
         val operationsList: ArrayList<String> = ArrayList(listOf("+","-","*"))
-        return operationsList.shuffled()[Random.nextInt(0,operationsList.size - 1)];
+        return operationsList.shuffled()[Random.nextInt(0,operationsList.size - 1)]
     }
 
     private fun calculateEquation(num1: Int, num2: Int, operation: String) : Int {
