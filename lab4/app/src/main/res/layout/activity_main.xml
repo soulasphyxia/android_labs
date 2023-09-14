@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/equationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/totalAnswersCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/totalAnswersCount"/>
+
+    <TextView
+        android:id="@+id/correctAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/correctString"/>
+    <TextView
+        android:id="@+id/incorrectAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/incorrectString"/>
+
+
+</LinearLayout>

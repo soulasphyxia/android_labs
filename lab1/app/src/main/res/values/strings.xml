@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lab1</string>
+    <string name="app_name">lab2</string>
     <string name="button_calculate">Посчитать</string>
     <string name="edit_hint">Введите выражение</string>
     <string name="operation_result">Результат операции: %1$f</string>
