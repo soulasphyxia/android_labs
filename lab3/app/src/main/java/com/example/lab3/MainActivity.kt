@@ -23,12 +23,10 @@ class MainActivity : AppCompatActivity() {
                 addTextView(i)
             }
 
-            
             val savedYScrollPosition = savedInstanceState.getInt("savedYScrollPosition")
             val scrollView = findViewById<ScrollView>(R.id.scroll_view)
             scrollView.scrollY = savedYScrollPosition
         }
-
         Log.i("MyInfo", "Метод onCreate")
     }
 
