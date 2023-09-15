@@ -1,6 +1,7 @@
 package com.example.lab3
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -18,9 +19,10 @@ class MainActivity : AppCompatActivity() {
         if(savedInstanceState != null) {
 
             numbersList = ArrayList(savedInstanceState.getIntArray("savedNumbersList")!!.toList())
-            for(number in numbersList){
-                addTextView(number)
+            for(i in numbersList){
+                addTextView(i)
             }
+
             
             val savedYScrollPosition = savedInstanceState.getInt("savedYScrollPosition")
             val scrollView = findViewById<ScrollView>(R.id.scroll_view)
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         Log.i("MyInfo", "Метод onDestroy")
     }
 
-    fun buttonAddClick() {
+    fun buttonAddClick(view: View) {
         val randomInt : Int = Random.nextInt(0,100)
         numbersList.add(randomInt)
         addTextView(randomInt)
