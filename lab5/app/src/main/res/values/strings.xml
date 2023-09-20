@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">lab5</string>
+    <string name="add_item">Добавить продукт</string>
 </resources>
