@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lab5"
+    namespace = "com.example.lab6"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.lab5"
+        applicationId = "com.example.lab6"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
@@ -26,6 +26,8 @@ android {
             )
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
