@@ -107,13 +107,16 @@ class ItemActivity : AppCompatActivity() {
         }
 
         if(item.itemId == R.id.action_delete){
-            isDelete = true
-            val intent = Intent()
-            intent.putExtra("index", index)
-            intent.putExtra("item", this.item)
-            intent.putExtra("isDelete", isDelete)
-            setResult(Activity.RESULT_OK, intent)
-
+            if(index != -1){
+                isDelete = true
+                val intent = Intent()
+                intent.putExtra("index", index)
+                intent.putExtra("item", this.item)
+                intent.putExtra("isDelete", isDelete)
+                setResult(Activity.RESULT_OK, intent)
+            }else{
+                setResult(Activity.RESULT_CANCELED)
+            }
             finish()
             return true
         }

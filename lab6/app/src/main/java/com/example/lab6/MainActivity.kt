@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
             val index: Int = data?.getIntExtra("index", -1) ?: -1
             val item: Item = data?.getParcelableExtra("item") ?: Item()
             val isDelete : Boolean = data?.getBooleanExtra("isDelete", false) ?: false
-            Log.i("isDelete", isDelete.toString());
             val cv = ContentValues()
             cv.put("kind", item.kind)
             cv.put("title", item.title)
@@ -71,9 +70,8 @@ class MainActivity : AppCompatActivity() {
                 con.insert("items", null, cv)
             }
             if(isDelete){
-                Log.i("isDelete", "DELETE")
-                con.delete("items", "id=" + item.id.toString(),null)
                 itemsList.remove(item)
+                con.delete("items", "id=?",arrayOf(item.id.toString()))
             }
             val listView: ListView = findViewById(R.id.listItems)
             (listView.adapter as ItemAdapter).notifyDataSetChanged()
