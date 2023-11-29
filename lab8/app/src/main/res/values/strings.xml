@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">lab8</string>
+    <string name="totalAnswersCount">Вопрос: %d </string>
+    <string name="correctString">Количество правильных ответов: %d </string>
+    <string name="incorrectString">Количество неправильных ответов: %d </string>
+    <string name="correctAnswer">Правильный ответ!</string>
+    <string name="incorrectAnswer">Неправильный ответ!</string>
+</resources>
