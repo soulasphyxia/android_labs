@@ -1,4 +1,4 @@
-package com.example.lab8
+package com.example.lab8.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,12 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.lab8.Equation
+import com.example.lab8.MainActivity
+import com.example.lab8.OnDataListener
+import com.example.lab8.R
+import com.example.lab8.generators.RandomEquationGenerator
+import com.example.lab8.generators.RandomNumbersGenerator
 
 class RightFragment(Operation: Int = 0, Difficulty: Int = 1): Fragment() {
 

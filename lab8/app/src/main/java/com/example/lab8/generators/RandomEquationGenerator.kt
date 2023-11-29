@@ -1,5 +1,6 @@
-package com.example.lab8
+package com.example.lab8.generators
 
+import com.example.lab8.Equation
 import kotlin.math.pow
 import kotlin.random.Random
 

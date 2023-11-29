@@ -1,4 +1,4 @@
-package com.example.lab8
+package com.example.lab8.generators
 
 import kotlin.math.floor
 import kotlin.math.log10

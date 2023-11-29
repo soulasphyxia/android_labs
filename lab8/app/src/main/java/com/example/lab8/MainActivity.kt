@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
+import com.example.lab8.fragments.LeftFragment
+import com.example.lab8.fragments.RightFragment
+import com.example.lab8.generators.DifficultyGenerator
 
 class MainActivity : AppCompatActivity(), OnDataListener {
     private var isTwoPane = false;
@@ -47,7 +49,8 @@ class MainActivity : AppCompatActivity(), OnDataListener {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.frame_right,
-                RightFragment(Data,difficulty))
+                RightFragment(Data,difficulty)
+            )
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .addToBackStack(null)
             .commit()

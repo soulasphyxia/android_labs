@@ -1,4 +1,4 @@
-package com.example.lab8
+package com.example.lab8.generators
 
 class DifficultyGenerator {
     enum class Difficulties(val value: Int) {
