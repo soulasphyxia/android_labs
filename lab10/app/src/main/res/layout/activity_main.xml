@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите начальное значение счетчика:"
+        android:textSize="15dp"/>
+    <EditText
+        android:id="@+id/initValueEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите интервал(мс):"
+        android:textSize="15dp"/>
+    <EditText
+        android:id="@+id/delayEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1000"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Запустить сервис"
+        android:onClick="buttonStartService"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Остановить сервис"
+        android:onClick="buttonStopService"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Значение счетчика:"
+        android:layout_gravity="center_horizontal"
+        android:textSize="24dp"/>
+    <TextView
+        android:id="@+id/textCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="24dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сброс"
+        android:onClick="resetService"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>
